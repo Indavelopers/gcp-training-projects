@@ -10,6 +10,6 @@ XXX description
 1. 
 
 ## TODOs
-1. Generate project IDs and save to file, load IDs from file if they exist
 1. LICENSE file
 1. Testing
+1. Import APIs, IAM roles, resources in projects, etc., from another file
