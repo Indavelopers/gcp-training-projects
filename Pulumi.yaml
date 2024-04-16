@@ -1,0 +1,10 @@
+name: gcp-training-projects
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: Managing multiple GCP projects for training hands-on lab environments
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: ""
