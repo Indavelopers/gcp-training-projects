@@ -8,11 +8,11 @@ import pulumi_gcp as gcp
 N_STUDENTS = 3
 ORGANIZATION_ID = "852525814022"
 BILLING_ACCOUNT_ID = "00AF3E-CE59B2-0F49AE"
+FOLDER_NAME = 'training-labs'
+FOLDER_DISPLAY_NAME = 'Training Labs'
 # E.g. Project IDs created: 'PROJECT_PREFIX-0-PROJECT_RANDOM_SUFFIX'
 PROJECT_PREFIX = 'student'
 PROJECT_RANDOM_SUFFIX = 'qwerty'
-FOLDER_NAME = 'training-labs'
-FOLDER_DISPLAY_NAME = 'Training Labs'
 
 # It's recommended to create n_students + 1 projects, having "project-0" for the instructor
 project_names = [PROJECT_PREFIX + '-' + str(i) for i in range(N_STUDENTS)]
