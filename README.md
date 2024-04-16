@@ -1,7 +1,12 @@
 # README
 XXX description
 
-## Instructions
+## Use case
+You are running a GCP workshop, training course, sandbox, hackathon... and you need to create several individual projects for participants.
+
+Those project need IAM roles for participants, APIs enabled by default, billing enabled, etc., and most importantly, maybe multiple resources already created following a template.
+
+## Usage
 1. Pulumi set up instructions: https://github.com/pulumi/pulumi?tab=readme-ov-file#getting-started
 1. Setup Pulumi passphrase: `export PULUMI_CONFIG_PASSPHRASE=passphrase && echo $PULUMI_CONFIG_PASSPHRASE`
 1. Setup GCP authn for Pulumi CLI: `gcloud auth application-default login`
@@ -14,8 +19,11 @@ XXX description
     1. List of APIs to be enabled in projects
     1. IDs for organization & billing account, folder name & display name
     1. Project prefix and random suffix, e.g. Project IDs created `PROJECT_PREFIX-0-PROJECT_RANDOM_SUFFIX`
+    1. Example file in `example-Pulumi.prod-yaml`
+1. Include IaC for creating template GCP resources in `resources.py` inside `create_resources` function, along Pulumi exports
 
 ## TODOs
 1. LICENSE file
-1. Testing
-1. Import APIs, IAM roles, resources in projects, etc., from another file
+1. Have a different resources file for each stack and import it programmatically (https://stackoverflow.com/questions/301134/how-can-i-import-a-module-dynamically-given-its-name-as-string)
+1. Automatic testing
+1. Update quotas
