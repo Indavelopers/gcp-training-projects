@@ -3,6 +3,8 @@
 import pulumi
 import pulumi_gcp as gcp
 
+from resources import create_resources
+
 
 # Config
 config = pulumi.Config()
@@ -52,10 +54,4 @@ pulumi.export('roles', roles)
 
 
 # Create template resources for the lab
-bucket_urls = []
-for project_id in project_ids:
-    bucket = gcp.storage.Bucket(project_id, name=project_id + '-bucket', location='US', project=project_id)
-    bucket_urls.append(bucket.url)
-
-
-pulumi.export('bucket_urls', bucket_urls)
+create_resources(project_ids)
