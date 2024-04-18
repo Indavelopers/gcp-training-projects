@@ -29,7 +29,7 @@ Those project need IAM roles for participants, APIs enabled by default, billing 
 Check `requirements.txt`.
 
 - [Pulumi](https://www.pulumi.com/docs/) for Python v3
-- Provider: [Google Cloud (GCP) Classic](https://www.pulumi.com/registry/packages/gcp/) v7
+- Pulumi provider: [Google Cloud (GCP) Classic](https://www.pulumi.com/registry/packages/gcp/) v7
 
 
 ## TODOs
