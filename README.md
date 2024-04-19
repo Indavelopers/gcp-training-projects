@@ -19,6 +19,7 @@ You would like to have a template for creating projects automatically, repeating
 
 
 ## Usage
+1. Clone repo and setup as working dir: `git clone REPO_URL`, `cd gcp-training-projects`
 1. Follow Pulumi set up instructions: https://github.com/pulumi/pulumi?tab=readme-ov-file#getting-started
     1. You can use the course name/ID for the Pulumi stack name
 1. You can setup Pulumi passphrase so you don't have to input it every time: `export PULUMI_CONFIG_PASSPHRASE=passphrase && echo $PULUMI_CONFIG_PASSPHRASE`
@@ -76,7 +77,6 @@ If you find any issues, please open a GitHub issue before (optionally) opening a
 
 
 ## TODOs
-- LICENSE file
 - Automatic testing: [unit, property and integration tests](https://www.pulumi.com/docs/using-pulumi/testing/)
 - Update quotas
 - How to share project templates
