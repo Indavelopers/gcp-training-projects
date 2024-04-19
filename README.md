@@ -46,8 +46,6 @@ You would like to have a template for creating projects automatically, repeating
 ## Multiple courses
 You can store multiple courses using multiple [Pulumi stacks](https://www.pulumi.com/docs/concepts/stack/).
 
-Each stack will have its own config & secrets files, e.g. `Pulumi.STACK_COURSE_NAME.yaml`, where you can store its config and template GCP resources.
-
 Each stack will also have its own state for managing GCP resources.
 
 You can manage stacks with `pulumi stack` ([docs](https://www.pulumi.com/docs/cli/commands/pulumi_stack/)):
@@ -55,6 +53,8 @@ You can manage stacks with `pulumi stack` ([docs](https://www.pulumi.com/docs/cl
 - List: `pulumi stack ls`
 - Choose current stack: `pulumi stack select`
 - Remove: `pulumi stack rm`
+
+Each stack will have its own config & secrets files, e.g. `Pulumi.STACK_COURSE_NAME.yaml`, where you can store its config and reference the template GCP resources file, which you can modify to follow the `example-Pulumi.gcp_course-yaml` example config file.
 
 
 ## Requirements
@@ -82,6 +82,6 @@ If you find any issues, please open a GitHub issue before (optionally) opening a
 - Automatic testing: [unit, property and integration tests](https://www.pulumi.com/docs/using-pulumi/testing/)
 - Update quotas
 - How to share project templates
-- CONTRIBUTION file
 - When deleting emails from email list, just delete the project related to the student and not the last project -- so project ids need to be related to a specific email, and not be monotonically increasing
 - How-to guide to destroy resources
+- How-to guide to import resources like projects, or refresh state/stack -- you don't have to include the code to create the resource, as the repo code will define/create it
