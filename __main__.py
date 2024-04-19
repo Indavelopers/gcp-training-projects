@@ -2,8 +2,7 @@
 
 import pulumi
 import pulumi_gcp as gcp
-
-from resources import create_resources
+import importlib
 
 
 # Config
@@ -17,6 +16,7 @@ project_random_suffix = config.require('project_random_suffix')
 emails = config.require_object('emails')
 roles = config.require_object('roles')
 apis = config.require_object('apis')
+infra_script = config.require('infra_script')
 n_students = len(emails)
 
 
@@ -54,4 +54,4 @@ pulumi.export('roles', roles)
 
 
 # Create template resources for the lab
-create_resources(project_ids)
+importlib.import_module(infra_script)

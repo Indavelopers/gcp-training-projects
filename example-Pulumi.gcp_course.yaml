@@ -2,8 +2,8 @@ encryptionsalt: v1:XXXX
 config:
   gcp:project: XXXX
   emails:
-    - info@indavelopers.com
-    - info@indavelopers.com
+    - trainer@gmail.com
+    - student@gmail.com
   roles:
     - roles/storage.admin
   apis:
@@ -15,3 +15,4 @@ config:
   folder_display_name: Training Labs
   project_prefix: student
   project_random_suffix: qwerty
+  infra_script: gcp_course_infra
