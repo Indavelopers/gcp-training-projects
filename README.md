@@ -53,11 +53,16 @@ You can manage stacks with `pulumi stack` ([docs](https://www.pulumi.com/docs/cl
 - Choose current stack: `pulumi stack select`
 - Remove: `pulumi stack rm`
 
+
 ## Requirements
 Check `requirements.txt`.
 
 - [Pulumi](https://www.pulumi.com/docs/) for Python v3
 - Pulumi provider: [Google Cloud (GCP) Classic](https://www.pulumi.com/registry/packages/gcp/) v7
+
+
+## License
+GNU GPLv3
 
 
 ## Known issues and contribution
