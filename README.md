@@ -28,7 +28,7 @@ You would like to have a template for creating projects automatically, repeating
     1. You need Cloud SDK installed locally (or use Cloud Shell)
     1. Or use another gcloud CLI installation to create credentials file with said command
     1. In the command output, check the path to the JSON file where the credentials are stored and move it to a known path, e.g. `credentials.json`
-    1. Use its path for envvar and check its content: `export GOOGLE_APPLICATION_CREDENTIALS=path/to/credentials.json`, e.g. `export GOOGLE_APPLICATION_CREDENTIALS=$(readlink -f credentials.json)`, `echo $GOOGLE_APPLICATION_CREDENTIALS`
+    1. Use its path for envvar and check its content: `export GOOGLE_APPLICATION_CREDENTIALS=path/to/credentials.json && echo $GOOGLE_APPLICATION_CREDENTIALS`, e.g. `export GOOGLE_APPLICATION_CREDENTIALS=$(readlink -f credentials.json) && echo $GOOGLE_APPLICATION_CREDENTIALS`
 1. Include config in `Pulumi.STACK_NAME.yaml`. Requires:
     1. List of emails for access control to projects, with first email for the instructor
     1. List of roles to be assigned to emails
@@ -79,6 +79,7 @@ If you find any issues, please open a GitHub issue before (optionally) opening a
 
 
 ## TODOs
+- Enable APIs
 - Automatic testing: [unit, property and integration tests](https://www.pulumi.com/docs/using-pulumi/testing/)
 - Update quotas
 - How to share project templates
