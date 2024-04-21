@@ -39,7 +39,9 @@ pulumi.export('project_ids', project_ids)
 
 
 # Enable APIs on projects
-# todo: enable apis
+for project_id in project_ids:
+    for api in apis:
+        project_api = gcp.projects.Service(project_id + '-' + api, project=project_id, service=api)
 
 pulumi.export('apis', apis)
 
