@@ -21,7 +21,9 @@ You would like to have a template for creating projects automatically, repeating
 ## Usage
 1. Clone repo and setup as working dir: `git clone REPO_URL`, `cd gcp-training-projects`
 1. Install Pulumi CLI (read below first): https://github.com/pulumi/pulumi?tab=readme-ov-file#getting-started, `curl -fsSL https://get.pulumi.com/ | sh`
-    1. You can login to Pulumi or manage stack states locally with `pulumi login --local`
+    1. You can login to Pulumi or manage stack states locally:
+        1. State file in `$HOME/.pulumi`: `pulumi login --local` (alias for `pulumi login file://~`)
+        1. State file in another location: `pulumi login file://path/to/pulumi-state`
     1. If you want to use the code in this repo, don't create a new Pulumi project, as will rewrite `__main__.py` file
 1. You can setup Pulumi passphrase so you don't have to input it every time: `export PULUMI_CONFIG_PASSPHRASE=passphrase && echo $PULUMI_CONFIG_PASSPHRASE`
 1. Setup GCP authn for Pulumi CLI: `gcloud auth application-default login`
@@ -29,19 +31,22 @@ You would like to have a template for creating projects automatically, repeating
     1. Or use another gcloud CLI installation to create credentials file with said command
     1. In the command output, check the path to the JSON file where the credentials are stored and move it to a known path, e.g. `credentials.json`
     1. Use its path for envvar and check its content: `export GOOGLE_APPLICATION_CREDENTIALS=path/to/credentials.json && echo $GOOGLE_APPLICATION_CREDENTIALS`, e.g. `export GOOGLE_APPLICATION_CREDENTIALS=$(readlink -f credentials.json) && echo $GOOGLE_APPLICATION_CREDENTIALS`
+1. Work under `stacks` dir: `cd stacks`
+1. Create a new Pulumi stack. You can use the course name/ID for the Pulumi stack name: `pulumi stack init`
 1. Include config in `Pulumi.STACK_NAME.yaml`. Requires:
     1. List of emails for access control to projects, with first email for the instructor
     1. List of roles to be assigned to emails
     1. List of APIs to be enabled in projects
     1. IDs for organization & billing account, folder name & display name
     1. Project prefix and random suffix, e.g. Project IDs created `PROJECT_PREFIX-0-PROJECT_RANDOM_SUFFIX`
-    1. Name of the infrastructure resources to be created, e.g. `gcp_course_infra` (don't add `.py`)
-    1. Example file in `example-Pulumi.gcp_course-yaml`
-    1. As we're creating a GCP folder and projects, config `gcp:project` is not used, so can be setup as any valid GCP project ID
-1. Include IaC for creating template GCP resources in `gcp_course_infra.py`, along Pulumi exports
+    1. Name of the infrastructure resources script to be imported:
+        1. For clarity, you can use `STACK_NAME_infra`, but it's not enforced - i.e. script for this how-to guide is `gcp_course_infra`
+        1. Don't add `.py` as it's the name of the Python module script
+        1. Example file in `example-Pulumi.stack_name-yaml`
+    1. As we're creating a GCP folder and projects, Pulumi config `gcp:project` is not used, so can be setup as any valid GCP project ID
+1. Include IaC for creating template GCP resources in `STACK_NAME_infra.py`, along Pulumi exports
 1. Create resources with Pulumi CLI: `pulumi up`
-    1. Create a new Pulumi stack. You can use the course name/ID for the Pulumi stack name
-
+    
 
 ## Multiple courses
 You can store multiple courses using multiple [Pulumi stacks](https://www.pulumi.com/docs/concepts/stack/).
