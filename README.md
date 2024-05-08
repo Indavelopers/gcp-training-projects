@@ -21,8 +21,9 @@ You would like to have a template for creating projects automatically, repeating
 ## Usage
 1. Clone repo and setup as working dir: `git clone REPO_URL`, `cd gcp-training-projects`
 1. Install Pulumi CLI (read below first): https://github.com/pulumi/pulumi?tab=readme-ov-file#getting-started, `curl -fsSL https://get.pulumi.com/ | sh`
+    1. (Optional, works without it) Install Pulumi GCP Python package: `pip install pulumi_gcp`
     1. You can login to Pulumi or manage stack states locally:
-        1. State file in `$HOME/.pulumi`: `pulumi login --local` (alias for `pulumi login file://~)
+        1. State file in `$HOME/.pulumi`: `pulumi login --local` (alias for `pulumi login file://~`)
         1. State file in another location: `pulumi login file://path/to/pulumi-state`
     1. If you want to use the code in this repo, don't create a new Pulumi project, as will rewrite `__main__.py` file
 1. You can setup Pulumi passphrase so you don't have to input it every time: `export PULUMI_CONFIG_PASSPHRASE=passphrase && echo $PULUMI_CONFIG_PASSPHRASE`
