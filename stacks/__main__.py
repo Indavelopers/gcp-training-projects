@@ -2,7 +2,9 @@
 
 import pulumi
 import pulumi_gcp as gcp
+import hashlib
 import importlib
+import random
 
 
 # Config
@@ -12,7 +14,6 @@ billing_account_id = config.require('billing_account_id')
 folder_name  = config.require('folder_name')
 folder_display_name = config.require('folder_display_name')
 project_prefix = config.require('project_prefix')
-project_random_suffix = config.require('project_random_suffix')
 emails = config.require_object('emails')
 roles = config.require_object('roles')
 apis = config.require_object('apis')
@@ -20,40 +21,41 @@ infra_script = config.require('infra_script')
 n_students = len(emails)
 
 
-# It's recommended to create n_students + 1 projects, having "project_prefix-0-suffix" for the instructor
-project_names = [project_prefix + '-' + str(i) for i in range(n_students)]
-
 # Create a GCP folder for the training projects
 folder = gcp.organizations.Folder(folder_name, display_name=folder_display_name, parent=f'organizations/{organization_id}')
 
 # Create GCP projects under said folder
-project_ids = []
-for project_name in project_names:
-    project_id = project_name + '-' + project_random_suffix
-    project_ids.append(project_id)
+# It's recommended to create n_students + 1 projects, having "project_prefix-0-suffix" for the instructor
+# Set the seed for random numbers so each run generates same numbers for same emails/projects
+random.seed(3.1415926)
+random_numbers = [str(random.randint(0, 99)).zfill(2) for _ in range(n_students)]
 
-    project = gcp.organizations.Project(project_id, name=project_name, project_id=project_id, folder_id=folder.name, billing_account=billing_account_id)
+generated_project_ids = [project_prefix + '-' + random_number + '-' + hashlib.sha256(email.encode()).hexdigest()[:4] 
+                 for random_number, email in zip(random_numbers, emails)]
 
-pulumi.export('folder_id', folder.name)
-pulumi.export('project_ids', project_ids)
+gcp_project_ids = []
+for gcp_project_id in generated_project_ids:
+    project = gcp.organizations.Project(gcp_project_id, name=gcp_project_id, project_id=gcp_project_id, folder_id=folder.id, billing_account=billing_account_id)
 
+    gcp_project_ids.append(project.id)    # Pulumi resource name = GCP project ID = GCP project name
+
+pulumi.export('folder_id', folder.id)
+pulumi.export('project_ids', gcp_project_ids)
 
 # Enable APIs on projects
-for project_id in project_ids:
+for gcp_project_id, generated_project_id in zip(gcp_project_ids, generated_project_ids):
     for api in apis:
-        project_api = gcp.projects.Service(project_id + '-' + api, project=project_id, service=api)
+        project_api = gcp.projects.Service(generated_project_id + '-' + api, project=gcp_project_id, service=api)
 
 pulumi.export('apis', apis)
 
-
 # Setup IAM for the students
-for project_id, email in zip(project_ids, emails):    
+for gcp_project_id, generated_project_id, email in zip(gcp_project_ids, generated_project_ids, emails):    
     for role in roles:
-        project_binding = gcp.projects.IAMMember(project_id, project=project_id, role=role, member=f'user:{email}')
+        project_binding = gcp.projects.IAMMember(generated_project_id + '-' + role, project=gcp_project_id, role=role, member=f'user:{email}')
 
 pulumi.export('emails', emails)
 pulumi.export('roles', roles)
-
 
 # Create template resources for the lab
 importlib.import_module(infra_script)

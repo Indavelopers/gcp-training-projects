@@ -41,7 +41,9 @@ You would like to have a template for creating projects automatically, repeating
     1. List of roles to be assigned to emails
     1. List of APIs to be enabled in projects
     1. IDs for organization & billing account, folder name & display name
-    1. Project prefix and random suffix, e.g. Project IDs created `PROJECT_PREFIX-0-PROJECT_RANDOM_SUFFIX`
+    1. Project prefix, e.g. Project IDs created `PROJECT_PREFIX-00-EMAIL_HASH_SUFFIX`, with `00-99` pseudo-random integers for each project
+        1. Project prefix can e.g. reflect the name of the exercise or workshop, so can be the same as Pulumi stack name
+        1. GCP project IDs must be 6 to 30 with lowercase letters, digits, hyphens and start with a letter, and trailing hyphens are prohibited, so this also applies to project prefix
     1. Name of the infrastructure resources script to be imported:
         1. For clarity, you can use `STACK_NAME_infra`, but it's not enforced - i.e. script for this how-to guide is `gcp_course_infra`
         1. Don't add `.py` as it's the name of the Python module script
@@ -49,6 +51,7 @@ You would like to have a template for creating projects automatically, repeating
     1. As we're creating a GCP folder and multiple projects, Pulumi config `gcp:project` is not used, as it, so can be setup as any valid GCP project ID
 1. Include IaC for creating template GCP resources in `STACK_NAME_infra.py`, along Pulumi exports
 1. Create resources with Pulumi CLI: `pulumi up`
+    1. If you got an error, sometimes it needs to be run multiple times, as (for now) some resources depends on others, so they need to be created first
 
 ## Multiple projects, courses or exercises
 
@@ -87,11 +90,9 @@ GNU GPLv3
 
 ## Known issues and contribution
 
-Tested at the time of last commit.
+Tested at the time of last commit:
 
-- When reducing the email student list and updating the stack (with `pulumi up`), last student projecs are deleted, instead of the leaving student's projects
-  - Workaround: please maintain students email although they leave till deleting every project
-  - No issue when adding new students, and therefore projects
+- None known.
 
 If you find any issues, please open a GitHub issue before (optionally) opening a PR to fix it, or contact the maintainer directly any way.
 

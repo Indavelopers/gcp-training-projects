@@ -1,19 +1,20 @@
-encryptionsalt: v1:57UF9csXWyo=:v1:2UNanW+UcSbJJyTk:oVlvVS7qATTltAcAcbOCW7zaLoXaTg==
+encryptionsalt: v1:5PTMBrI9E54=:v1:t5FnOfsZkk+/lFZl:Dzf1AJs2IuMm4IJ5MwrFFEoXWCCkmQ==
 config:
   gcp:project: gcp-training-mmog
-  emails:
+  emails: # Can be recomended to create a project for you as the first one using your email
     - info@indavelopers.com
     - konigdermasai@gmail.com
     - konigdermasai@gmail.com
   roles:
+    - roles/compute.admin  
     - roles/storage.admin
   apis:
     - iam.googleapis.com
+    - compute.googleapis.com
     - storage.googleapis.com
   organization_id: 852525814022
   billing_account_id: 00AF3E-CE59B2-0F49AE
   folder_name: training-labs
   folder_display_name: Training Labs
-  project_prefix: student
-  project_random_suffix: qwerty
+  project_prefix: gcp-course
   infra_script: gcp_course_infra
