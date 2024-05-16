@@ -12,7 +12,7 @@ print(gcp_project_ids)
 print(type(gcp_project_ids[0]))
 
 # Using output.property.apply() to convert and process Pulumi Outputs as they are async
-gcp_project_ids = [id.apply(lambda s: s.split("/")[-1]) for id in gcp_project_ids] # return the last part of the ID
+gcp_project_ids = [id.apply(lambda s: str(s.split("/")[-1])) for id in gcp_project_ids] # return the last part of the ID
 
 # TODO
 print('LOGGING AFTER gcp_project_ids:')
@@ -28,7 +28,7 @@ for gcp_project_id, generated_project_id in zip(gcp_project_ids, generated_proje
     print(gcp_project_id)
     print(type(gcp_project_id))
 
-    bucket = gcp.storage.Bucket(generated_project_id, name=generated_project_id + '-bucket', location='US', project=gcp_project_id)
+    bucket = gcp.storage.Bucket(gcp_project_id, name=gcp_project_id + '-bucket-test', location='US', project=gcp_project_id)
     bucket_urls.append(bucket.url)
 
 pulumi.export('bucket_urls', bucket_urls)
