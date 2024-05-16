@@ -27,7 +27,7 @@ folder = gcp.organizations.Folder(folder_name, display_name=folder_display_name,
 # Create GCP projects under said folder
 # It's recommended to create n_students + 1 projects, having "project_prefix-0-suffix" for the instructor
 # Set the seed for random numbers so each run generates same numbers for same emails/projects
-random.seed(3.1415926)
+random.seed('test')
 random_numbers = [str(random.randint(0, 99)).zfill(2) for _ in range(n_students)]
 
 generated_project_ids = [project_prefix + '-' + random_number + '-' + hashlib.sha256(email.encode()).hexdigest()[:4] 
