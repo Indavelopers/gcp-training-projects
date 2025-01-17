@@ -14,3 +14,4 @@ In no particular order...
   - resources on services
 - Add instructions on how to use a viewer for dependency graphs: `pulumi stack graph GRAPH_FILE`.
 - Switch to autonaming convention for physical resources: <https://www.pulumi.com/blog/autonaming-configuration/>
+- Update to provider GCP Classic v8
