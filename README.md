@@ -22,7 +22,7 @@ You would prefer to have a template for creating projects automatically, just re
 ## Usage
 
 1. Clone repo and setup as working dir: `git clone REPO_URL`, `cd gcp-training-projects`
-1. Install Pulumi CLI: [https://github.com/pulumi/pulumi?tab=readme-ov-file#getting-started], `curl -fsSL https://get.pulumi.com/ | sh`
+1. Install Pulumi CLI: [Pulumi: Getting started](https://github.com/pulumi/pulumi?tab=readme-ov-file#getting-started), `curl -fsSL https://get.pulumi.com/ | sh`
     1. (Optional, works without it) Install Pulumi Python package:
         1. (Recommended) Create a Python virtual environment (eg. using venv): `python -m venv .venv`
         1. Activate virtual environment: `source .venv/bin/activate`
