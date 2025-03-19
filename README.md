@@ -23,10 +23,6 @@ You would prefer to have a template for creating projects automatically, just re
 
 1. Clone repo and setup as working dir: `git clone REPO_URL`, `cd gcp-training-projects`
 1. Install Pulumi CLI: [Pulumi: Getting started](https://github.com/pulumi/pulumi?tab=readme-ov-file#getting-started), `curl -fsSL https://get.pulumi.com/ | sh`
-    1. (Optional, works without it) Install Pulumi Python package:
-        1. (Recommended) Create a Python virtual environment (eg. using venv): `python -m venv .venv`
-        1. Activate virtual environment: `source .venv/bin/activate`
-        1. Install Pulumi GCP Python package: `pip install -r requirements.txt`
     1. You can login to Pulumi or manage stack states locally:
         1. State file in `$HOME/.pulumi`: `pulumi login --local` (alias for `pulumi login file://~`)
         1. State file in another location: `pulumi login file://path/to/pulumi-state`
@@ -50,6 +46,17 @@ You would prefer to have a template for creating projects automatically, just re
         1. Don't add `.py` as it looks for the name of the Python module script, not the file itself.
     1. As we're creating a GCP folder and multiple projects, Pulumi config `gcp:project` is not used, so it can be skipped (Pulumi throwns a warning) or can be setup as any valid GCP project ID.
 1. Include IaC for creating template GCP resources in `STACK_NAME_infra.py`, along Pulumi exports as needed.
+
+### Manage Python virtual environments
+
+Pulumi automatically creates a Python virtual env for each stack using `venv`:
+
+1. Prepare your stack and Python code for defining your resources.
+1. Preview your Pulumi stack: `pulumi preview`
+1. Pulumi creates the virtual env in `STACK_DIR/venv`.
+1. Activate virtual environment: `source venv/bin/activate`
+   1. You might want to point your IDE's Python interpreter to this virtual env (path `./stacks/venv/bin/python`)
+1. Install Pulumi GCP Python package: `pip install -r requirements.txt`
 
 ### Pulumi's CLI usage
 

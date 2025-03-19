@@ -161,3 +161,6 @@ cython_debug/
 
 # Pulumi state
 .pulumi/
+# Pulumi stack config files
+Pulumi.*.yaml
+!Pulumi.lab-project.yaml
