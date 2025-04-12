@@ -14,7 +14,7 @@ bucket_urls = []
 # Loop on GCP projects and create resources
 for project, generated_project_id in zip(gcp_projects, generated_project_ids):
     # Create a GCS bucket
-    bucket = gcp.storage.Bucket(generated_project_id + '-bucket', name=generated_project_id + '-bucket', location='US', project=project)
+    bucket = gcp.storage.Bucket(generated_project_id + '-bucket', name=generated_project_id + '-bucket', location='US', project=project, force_destroy=True)
 
     bucket_urls.append(bucket.url)
 

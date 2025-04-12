@@ -1,0 +1,7 @@
+name: gcp-training-projects-example-course
+runtime:
+  name: python
+  options:
+    virtualenv: ../../src/venv
+main: ../../src/__main__.py
+description: Pulumi project for example-course

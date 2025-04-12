@@ -3,9 +3,10 @@
 import pulumi
 import pulumi_gcp as gcp
 import hashlib
-import importlib
+import importlib.util
 import random
 import string
+import sys
 
 
 # Config
@@ -45,13 +46,18 @@ generated_project_ids = [project_prefix + '-' + str(index_number) + '-' + hashli
 gcp_projects = []
 for generated_project_id, email in zip(generated_project_ids, emails):
     # Create GCP projects under said folder
-    project = gcp.organizations.Project(generated_project_id, name=generated_project_id, project_id=generated_project_id, folder_id=folder.id, billing_account=billing_account_id)
+    project = gcp.organizations.Project(generated_project_id, 
+                                        name=generated_project_id, 
+                                        project_id=generated_project_id, 
+                                        folder_id=folder.id,
+                                        billing_account=billing_account_id,
+                                        deletion_policy='DELETE')
 
     gcp_projects.append(project.project_id)
 
     # Enable APIs on projects
     for api in apis:
-        project_api = gcp.projects.Service(generated_project_id + '-' + api, service=api, project=project)
+        project_api = gcp.projects.Service(generated_project_id + '-' + api, service=api, project=project, disable_on_destroy=False)
 
     # Setup IAM for the attendees
     for role in roles:
@@ -60,4 +66,13 @@ for generated_project_id, email in zip(generated_project_ids, emails):
 pulumi.export('gcp_projects', gcp_projects)
 
 # Imports and executes infra script to create GCP templated resources
-importlib.import_module(infra_script)
+def import_from_path(module_name, file_path):
+    spec = importlib.util.spec_from_file_location(module_name, file_path)
+    module = importlib.util.module_from_spec(spec)
+    
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    
+    return module
+
+import_from_path('infra_script', infra_script)

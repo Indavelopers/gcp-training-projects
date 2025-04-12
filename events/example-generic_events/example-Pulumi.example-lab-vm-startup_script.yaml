@@ -1,0 +1,18 @@
+encryptionsalt: v1:XXXX
+config:
+  emails: # Can be recomended to create a project for you as the first one using your email
+    - trainer@gmail.com
+    - student@gmail.com
+  roles:
+    - roles/compute.admin  
+    - roles/storage.admin
+  apis:
+    - iam.googleapis.com
+    - compute.googleapis.com
+    - storage.googleapis.com
+  organization_id: XXXX
+  billing_account_id: XXXX
+  folder_name: lab-vm-startup_script
+  folder_display_name: Lab VM startup script
+  project_prefix: lab-vm-startup_script
+  infra_script: ../events/example-generic_events/example-lab-vm-startup_script/lab-project_infra.py

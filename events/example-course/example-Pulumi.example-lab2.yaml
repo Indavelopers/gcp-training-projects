@@ -1,0 +1,18 @@
+encryptionsalt: v1:XXXX
+config:
+  emails: # Can be recomended to create a project for you as the first one using your email
+    - trainer@gmail.com
+    - student@gmail.com
+  roles:
+    - roles/compute.admin  
+    - roles/storage.admin
+  apis:
+    - iam.googleapis.com
+    - compute.googleapis.com
+    - storage.googleapis.com
+  organization_id: XXXX
+  billing_account_id: XXXX
+  folder_name: example_course-example_lab2
+  folder_display_name: Example course Example lab 2
+  project_prefix: example-lab2
+  infra_script: ../events/example-course/example-lab2/lab-project_infra.py
