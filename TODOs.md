@@ -12,3 +12,4 @@ In no particular order...
 - Consider using project templates for creating new stacks: <https://www.pulumi.com/docs/iac/concepts/projects/project-file/#template-options>
 - Allow to create projects folder inside an already created GCP folder, or skip folder creation
 - Disable gcp:project default config warning with: `pulumi config set gcp:disableGlobalProjectWarning true`
+- Check as you can't assign owner role to someone outside your org: <https://docs.cloud.google.com/iam/docs/roles-overview#:~:text=Generally%2C%20you%20can,of%20any%20organization.>
