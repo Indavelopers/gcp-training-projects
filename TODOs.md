@@ -15,3 +15,4 @@ In no particular order...
 - Check as you can't assign owner role to someone outside your org: <https://docs.cloud.google.com/iam/docs/roles-overview#:~:text=Generally%2C%20you%20can,of%20any%20organization.>
 - Refactor whole approach? At least offer different instructions: either 1 repo cloned for multiple events & labs, or a single installation in the event/lab independent source repo
 - Rewrite and clarify instructions
+- Select destination (org, folder), to create labs folder
