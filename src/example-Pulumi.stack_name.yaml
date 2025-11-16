@@ -4,7 +4,7 @@ config:
     - trainer@gmail.com
     - student@gmail.com
   roles:
-    - roles/compute.admin  
+    - roles/compute.admin
     - roles/storage.admin
   apis:
     - iam.googleapis.com
