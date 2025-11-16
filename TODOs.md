@@ -16,3 +16,4 @@ In no particular order...
 - Refactor whole approach? At least offer different instructions: either 1 repo cloned for multiple events & labs, or a single installation in the event/lab independent source repo
 - Rewrite and clarify instructions
 - Select destination (org, folder), to create labs folder
+- Clarify how to set infra-to-import py file in stack yaml
