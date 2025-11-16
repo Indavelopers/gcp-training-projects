@@ -24,7 +24,7 @@ You would prefer to have a template for creating these projects automatically, a
 
 ## Use of Pulumi projects and stacks for representing events and labs
 
-Sometimes you just want one mew environment for a single lab, sometimes you're running an event/workshop/course composed of multiple lab exercises.
+Sometimes you just want one new environment for a single lab, sometimes you're running an event/workshop/course composed of multiple lab exercises.
 
 You can organize multiple exercises by using [Pulumi projects](https://www.pulumi.com/docs/concepts/project/) and [Pulumi Stacks](https://www.pulumi.com/docs/concepts/stack/).
 
