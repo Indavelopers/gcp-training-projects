@@ -17,3 +17,4 @@ In no particular order...
 - Rewrite and clarify instructions
 - Select destination (org, folder), to create labs folder
 - Clarify how to set infra-to-import py file in stack yaml
+- Need to set up API enabling as dependency for resources, for enabling the API before attempting to create the resources
