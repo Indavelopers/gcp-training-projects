@@ -55,7 +55,7 @@ You could set up your dir structure as you prefer, or use them as example files 
    1. Then create a event/lab dir and work in that: `cd events`, `mkdir example-course1`, `cd example-course1`
 6. Copy `src/Pulumi.yaml` and modify its content - `main` and `runtime` (example: `events/example-generic_events/Pulumi.yaml`)
 7. Create a new Pulumi stack. You can use the lab name as the Pulumi stack name: `pulumi stack init STACK_NAME`
-8. Include lab config in the auto-created `Pulumi.STACK_NAME.yaml` file next to the copied`Pulumi.yaml` (example: `src/example-Pulumi.stack_name-yaml`):
+8. Include lab config in the auto-created `Pulumi.STACK_NAME.yaml` file next to the copied `Pulumi.yaml` (example: `src/example-Pulumi.stack_name-yaml`):
     1. List of attendees' emails. It's recommended to include also the instructor's email first.
     2. List of roles to be assigned to attendes in their projects.
     3. List of APIs/services to enable.
