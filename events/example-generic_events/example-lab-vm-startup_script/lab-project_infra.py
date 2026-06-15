@@ -14,10 +14,10 @@ instances = []
 # Loop on GCP projects and create resources
 for project, generated_project_id in zip(gcp_projects, generated_project_ids):
     # Create a VM instance with a NGINX server installed with an startup script
-    instance = gcp.compute.Instance(generated_project_id + '-vm', 
+    instance = gcp.compute.Instance(generated_project_id + '-vm',
                                     name=generated_project_id + '-vm',
                                     project=project,
-                                    zone='europe-west4-a', 
+                                    zone='europe-west4-a',
                                     machine_type='e2-micro',
                                     boot_disk={'initialize_params': {
                                         'image': 'debian-cloud/debian-12'

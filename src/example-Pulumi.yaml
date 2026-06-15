@@ -5,6 +5,7 @@ runtime:
     virtualenv: venv
 main: __main__.py
 # For non "src" folders, refer to "src" folder main Python module and venv path
+# Substitute lines 2-6 to:
 # runtime:
 #  name: python
 #  options:

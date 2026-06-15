@@ -161,5 +161,7 @@ cython_debug/
 
 # Pulumi state
 .pulumi/
-# Pulumi stack config files for testing
+
+# Dev testing
 Pulumi.test-stack*.yaml
+events/test-event/
