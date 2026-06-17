@@ -2,7 +2,6 @@
 
 In no particular order...
 
-- Modify "test-event" to "test_event"
 - Explore if stack YAML files can be stored in lab folders using [stackConfigDir](https://www.pulumi.com/docs/iac/concepts/projects/project-file/#:~:text=None-,stackConfigDir,-optional)
 - Add instructions to set project as a dependency for all resources
 - Rework GCP project ID importing into "lab-project_infra.py"
