@@ -163,5 +163,6 @@ cython_debug/
 .pulumi/
 
 # Dev testing
-Pulumi.test-stack*.yaml
-events/test-event/
+events/test_event/
+events/mmog_events/
+
