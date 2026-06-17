@@ -2,22 +2,16 @@
 
 In no particular order...
 
-- Explore if stack YAML files can be stored in lab folders using [stackConfigDir](https://www.pulumi.com/docs/iac/concepts/projects/project-file/#:~:text=None-,stackConfigDir,-optional)
 - Rework GCP project ID importing into "lab-project_infra.py"
 - Check what if you bring down resources, deleting a project, then redeploying
-- Fix:
-  - In every stack config YAML, fix infra script path: "infra_script: ../events/test-event/lab-project_infra.py"
 - Instructions:
   - Rewrite and clarify instructions
-  - Clarify how to set infra-to-import py file in stack yaml
-  - Instructions to set PULUMI_CONFIG_PASSPHRASE_FILE instead of envvar
-  - Specify how to reach "src", as there's 2 levels between YAML file and "src"
-    - Chek if existing "src" path works in "example-course" and "example-generic_events", seems it's not working
+    - Instructions to set PULUMI_CONFIG_PASSPHRASE_FILE instead of envvar
   - Explain unique event ID
   - Note if stacks are deleted, stack YAML is also deleted, so stacks are long-lived although resources are down
     - Note for emails to be deleted - add attendees emails as secrets?
   - Note you can't assign the owner role to users outside your organization: <https://docs.cloud.google.com/iam/docs/roles-overview#:~:text=Generally%2C%20you%20can,of%20any%20organization.>
-  - Check if stack yaml files can be created in a folder down of Pulumi.yaml project, then move stacks to same folder as "lab-project_infra.py"
+  - Check if stack yaml files can be created in a folder down of Pulumi.yaml project, then move stacks to same folder as "lab-project_infra.py" using [stackConfigDir](https://www.pulumi.com/docs/iac/concepts/projects/project-file/#:~:text=None-,stackConfigDir,-optional)
 - Min supported version:
   - Clarify min Pulumi CLI version supported
   - Update to Pulumi GCP provider v9
@@ -38,4 +32,3 @@ In no particular order...
   - Consider using project templates for creating new stacks: <https://www.pulumi.com/docs/iac/concepts/projects/project-file/#template-options>
 - Refactor whole approach? At least offer different instructions: either 1 repo cloned for multiple events & labs, or a single installation in the event/lab independent source repo
   - Script to allow the student to individually run by themselves to create their project env, if needed
-- Have GCP org and folder optional, for using with non-org GMails
