@@ -4,12 +4,9 @@ import pulumi
 import pulumi_gcp as gcp
 import hashlib
 import importlib.util
-import logging
 import random
 import string
 import sys
-
-from collections import namedtuple
 
 
 # Config
@@ -35,8 +32,7 @@ folder = gcp.organizations.Folder(folder_name,
 
 # Random salt to allow to create more than one GCP project for each email
 # Includes random seed for reproducibility, if not, creates a new project everytime 'pulumi up' is run
-# Includes organization ID, billing account ID, folder name, project prefix and stack name because, if not, same attendees and instructor
-# for a different event generates a colliding GCP project ID
+# Includes organization ID, billing account ID, folder name, project prefix and stack name and event unique ID to avoid GCP project ID collisions
 random.seed(3.1415926)
 random_salts = [''.join(random.choices(string.ascii_lowercase + string.digits, k=4)) +
                 organization_id +

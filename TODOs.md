@@ -2,12 +2,10 @@
 
 In no particular order...
 
-- Rework GCP project ID importing into "lab-project_infra.py"
 - Check what if you bring down resources, deleting a project, then redeploying
 - Instructions:
   - Rewrite and clarify instructions
     - Instructions to set PULUMI_CONFIG_PASSPHRASE_FILE instead of envvar
-  - Explain unique event ID
   - Note if stacks are deleted, stack YAML is also deleted, so stacks are long-lived although resources are down
     - Note for emails to be deleted - add attendees emails as secrets?
   - Note you can't assign the owner role to users outside your organization: <https://docs.cloud.google.com/iam/docs/roles-overview#:~:text=Generally%2C%20you%20can,of%20any%20organization.>
