@@ -11,6 +11,7 @@ Contact maintainer:
 - Google Cloud Authorized Trainer
 - Google Developer Expert in Google Cloud
 - LinkedIn: [Marcos Manuel Ortega](https://www.linkedin.com/in/marcosmanuelortega)
+- Made with ❤️ from Almería, Spain
 
 ## Use case
 
@@ -40,11 +41,17 @@ Recommended dir structure:
 
 You can use this structure, using them as example files and adding your new event dirs, or a custom one.
 
-*NOTES:*
+### Pulumi project and stack YAML config files
 
 - Stacks config YAML files are created by default next to the project's `Pulumi.yaml` file, instead of the current dir.
-- In each `Pulumi.yaml`, use the right relative paths to main Python entrypoint (`__main__.py`), virtualenv (`venv`) and requirements (`requirements.txt`) in `src`.
-- Also, in each stack YAML file, use the right relative path to the lab `lab-project_infra.py` file.
+- In each `Pulumi.yaml`, use relative paths to navigate up from the event directory to the repository root's `src` directory. For example, if your project is 2 levels deep (`events/example-course/`), use `../../src/__main__.py` and `../../src/venv`.
+- Also, in each stack YAML file, use the correct relative path to the lab `lab-project_infra.py` file as evaluated from the main script (e.g., `../events/example-course/example-lab0/lab-project_infra.py` as seen from `src/__main__.py`).
+
+### Writing GCP resources
+
+As we're creating the GCP projects and enabling the GCP APIs or services in the same Pulumi script, you need to explicitly declare the GCP API/service each resource depends on. If not declared, APIs and resources would be created at the same time, and thus resource creation would fail as the API hasn't been enabled yet.
+
+Something similar happens with GCP project creation: if the GCP project is not declared for each resource - even eg. for subnets, where the network is declared as an attribute, Pulumi would take your local Cloud SDK config GCP project, instead of the projects created by this script. Therefore, you need to explicitly include the GCP project using the `project` var from `gcp_projects` the loop is iterating over.
 
 ## Usage
 
@@ -110,7 +117,11 @@ You can add your Python modules here, or point to another `venv` dir in your sta
 
 ### Pulumi CLI usage
 
-**BEWARE:**: When creating a new Pulumi project, it rewrites any `Pulumi.yaml` and `__main__.py` in that dir, and creating a new Stack rewrites any `Pulumi.STACK_NAME.yaml`. Therefore, it's recommended to first create projects and stacks, then overwriting their file contents.
+**BEWARE:**:
+
+- When creating a new Pulumi project, it rewrites any `Pulumi.yaml` and `__main__.py` in that dir.
+- Creating a new Stack rewrites any `Pulumi.STACK_NAME.yaml`.
+- Therefore, it's recommended to first create projects and stacks, then overwriting the YAML with content from `src`.
 
 Manage Pulumi projects:
 
