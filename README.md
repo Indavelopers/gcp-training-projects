@@ -73,7 +73,9 @@ A recommended alternative would be to use the new basic `roles/writer` or the le
 4. Setup GCP authn Application Default Credentials (ADC) for Pulumi CLI: `gcloud auth application-default login`
     1. You need a working local Cloud SDK installation or use GCP Cloud Shell.
 5. Check first previous instructions about using Pulumi projects and stacks in section **Creating events and lab exercises**.
-   1. Create a event/lab dir and work in it: `cd events`, `mkdir example-course1 && mkdir example-course1/example-lab1`, `cd example-course1/example-lab1`
+   1. Create a event/lab dir and work in it. As discussed in **Creating events and lab exercises**, you can either create an event dir with a single lab env, or an event dir with multiple labs envs or subdirs.
+   2. E.g. for an event with a single lab: `cd events`, `mkdir example-event1 && mkdir example-event1`, `cd example-event1`.
+   3. E.g. for an event with multiple lab envs: `cd events`, `mkdir example-course1 && mkdir example-course1/example-lab1`, `cd example-course1/example-lab1`.
 6. For each new event dir, you need to create a new Pulumi project inside. For a new lab, you just need to create a new Pulumi stack.
    1. Creating a new project and stacks register them in your Pulumi state, and sets a new encryption salt for that stack.
 7. Create a new Pulumi `Python GCP` project: `pulumi new`
