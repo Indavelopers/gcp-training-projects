@@ -2,7 +2,6 @@
 
 In no particular order...
 
-- Check what if you bring down resources, deleting a project, then redeploying
 - Instructions:
   - Rewrite and clarify instructions
     - Instructions to set PULUMI_CONFIG_PASSPHRASE_FILE instead of envvar

@@ -87,13 +87,13 @@ Something similar happens with GCP project creation: if the GCP project is not d
         2. `00-99`: Project/attendee index, following emails list.
         3. `HASH_SUFFIX`: Unique hash created using stack config fields and random data.
         4. For clarity, you can use `STACK_NAME_infra`, but it's not enforced - e.g. this how-to guide examples use `lab-project_infra`.
-    10. `event_unique_id`: Unique event ID, modify if you want to repeat the event using the same stack name when users.
+    10. `event_unique_id`: Unique event ID, modify if you want to repeat the event using the same stack name and at least one repeating user.
         1. As GCP project IDs should be globally unique, a unique `HASH_SUFFIX` for each user is computed.
         2. This hash is computed using the stack config and random data, as stated before.
         3. When you delete the GCP project (e.g. with `pulumi down`), it enters a [pending delete state for 30 days](https://docs.cloud.google.com/resource-manager/docs/creating-managing-projects#shutting_down_projects), during which you can manually restore a project, but you can't use `pulumi up` to recreate them again.
-        4. When running the same lab again, you might copy and create a new stack with a different name and/or config, but sometimes you might just modify the email list and try to deploy again.
-        5. If any email is used again (e.g. same trainer or repeating attende), it would generate the same project ID again, and would error out when creating the GCP project.
-        6. Therefore, if the same lab is to be repeated, you can modify this unique event ID so that a different hash is created.
+        4. When running the same lab again, you should create a new stack with a different name and/or config, but sometimes you might just try to modify the email list and deploy again.
+        5. If any email is used again (e.g. same trainer or any repeating attende), it would generate the same project ID for him, and would error out when creating the GCP project as is in a pending state or the project ID is not available.
+        6. Therefore, if you need to repeat the same lab, you should modify any config or at least this unique event ID so that a different hash is created.
     11. As we're creating a GCP folder and multiple projects, Pulumi config `gcp:project` is not used, so it can be skipped (Pulumi throwns a warning).
 
 Then *voilá*, check and deploy environments with `pulumi preview` and `pulumi up` (see **Pulumi CLI usage** section).
