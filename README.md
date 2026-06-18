@@ -61,7 +61,9 @@ Something similar happens with GCP project creation: if the GCP project is not d
         1. State file in `$HOME/.pulumi`: `pulumi login --local` (alias for `pulumi login file://~`)
         2. State file in another location: `pulumi login file://path/to/pulumi-config-dir`
     2. Don't create a new Pulumi project in `src`, as will rewrite `__main__.py` file. Check `Pulumi CLI usage` section for more.
-3. You can setup the Pulumi passphrase so you don't have to input it every time: `export PULUMI_CONFIG_PASSPHRASE=passphrase && echo $PULUMI_CONFIG_PASSPHRASE`
+3. You can setup the Pulumi passphrase so you don't have to input it every time: e.g. `export PULUMI_CONFIG_PASSPHRASE=passphrase && echo $PULUMI_CONFIG_PASSPHRASE`
+   1. Alternatively, use PULUMI_CONFIG_PASSPHRASE_FILE envvar: e.g. `export PULUMI_CONFIG_PASSPHRASE_FILE=~/gcp-training-projects/src/pulumi_config_passphrase.txt && echo $PULUMI_CONFIG_PASSPHRASE_FILE`
+   2. Add the passphrase in said file.
 4. Setup GCP authn Application Default Credentials (ADC) for Pulumi CLI: `gcloud auth application-default login`
     1. You need a working local Cloud SDK installation or use GCP Cloud Shell.
 5. Check first previous instructions about using Pulumi projects and stacks in section **Creating events and lab exercises**.

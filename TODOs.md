@@ -3,8 +3,6 @@
 In no particular order...
 
 - Instructions:
-  - Rewrite and clarify instructions
-    - Instructions to set PULUMI_CONFIG_PASSPHRASE_FILE instead of envvar
   - Note if stacks are deleted, stack YAML is also deleted, so stacks are long-lived although resources are down
     - Note for emails to be deleted - add attendees emails as secrets?
   - Note you can't assign the owner role to users outside your organization: <https://docs.cloud.google.com/iam/docs/roles-overview#:~:text=Generally%2C%20you%20can,of%20any%20organization.>

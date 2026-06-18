@@ -162,6 +162,9 @@ cython_debug/
 # Pulumi state
 .pulumi/
 
+# Pulumi secrets
+/src/pulumi_config_passphrase.txt
+
 # Dev testing
 events/test_event/
 events/mmog_events/
