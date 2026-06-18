@@ -124,11 +124,12 @@ You can add your Python modules here, or point to another `venv` dir in your sta
 - When creating a new Pulumi project, it rewrites any `Pulumi.yaml` and `__main__.py` in that dir.
 - Creating a new Stack rewrites any `Pulumi.STACK_NAME.yaml`.
 - Therefore, it's recommended to first create projects and stacks, then overwriting the YAML with content from `src`.
+- Also note that if you delete a Pulumi stack or project, said YAML files will also be deleted.
 
 Manage Pulumi projects:
 
 - Create a new Pulumi Python GCP project using the `GCP Python` template: `pulumi new`
-- Any `pulumi` command will run linked to the nearest Pulumi project `Pulumi.yaml` file found in the same dir, or parent dirs.
+- Any `pulumi` command will run linked to the nearest Pulumi project `Pulumi.yaml` file found in the same or parent dirs.
 
 Manage Pulumi stacks:
 
@@ -137,7 +138,7 @@ Manage Pulumi stacks:
 - List stacks: `pulumi stack ls`
 - List all stacks, including other projects: `pulumi stack ls -aQ`
 - Select a different stack: `pulumi stack select STACK_NAME`
-- Remove a stack: `pulumi stack rm STACK_NAME`
+- Delete a stack: `pulumi stack rm STACK_NAME` (deletes stack YAML config file)
 
 Deploy GCP resources:
 

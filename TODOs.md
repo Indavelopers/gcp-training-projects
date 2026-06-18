@@ -3,8 +3,7 @@
 In no particular order...
 
 - Instructions:
-  - Note if stacks are deleted, stack YAML is also deleted, so stacks are long-lived although resources are down
-    - Note for emails to be deleted - add attendees emails as secrets?
+  - Note for emails to be deleted - add attendees emails as secrets?
   - Note you can't assign the owner role to users outside your organization: <https://docs.cloud.google.com/iam/docs/roles-overview#:~:text=Generally%2C%20you%20can,of%20any%20organization.>
   - Check if stack yaml files can be created in a folder down of Pulumi.yaml project, then move stacks to same folder as "lab-project_infra.py" using [stackConfigDir](https://www.pulumi.com/docs/iac/concepts/projects/project-file/#:~:text=None-,stackConfigDir,-optional)
 - Min supported version:
