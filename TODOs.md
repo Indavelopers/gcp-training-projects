@@ -2,10 +2,6 @@
 
 In no particular order...
 
-- Min supported version:
-  - Clarify min Pulumi CLI version supported
-  - Update to Pulumi GCP provider v9
-  - Min Python version
 - Choosing folder:
   - Select destination (org, folder), to create labs folder
   - Allow to create projects folder inside an already created GCP folder, or skip folder creation
