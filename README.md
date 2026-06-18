@@ -53,6 +53,12 @@ As we're creating the GCP projects and enabling the GCP APIs or services in the 
 
 Something similar happens with GCP project creation: if the GCP project is not declared for each resource - even eg. for subnets, where the network is declared as an attribute, Pulumi would take your local Cloud SDK config GCP project, instead of the projects created by this script. Therefore, you need to explicitly include the GCP project using the `project` var from `gcp_projects` the loop is iterating over.
 
+#### Assigning roles to attendees
+
+Usually, you might want to assign the `roles/owner` role to attendees and go with it, but it has some limitations: <https://docs.cloud.google.com/iam/docs/roles-overview#:~:text=Generally%2C%20you%20can,of%20any%20organization.>.
+
+A recommended alternative would be to use the new basic `roles/writer` or the legacy basic `roles/editor` instead, which would also be more secure.
+
 ## Usage
 
 1. Clone repo and open dir: `git clone https://github.com/Indavelopers/gcp-training-projects.git`, `cd gcp-training-projects`
@@ -99,6 +105,10 @@ Something similar happens with GCP project creation: if the GCP project is not d
     11. As we're creating a GCP folder and multiple projects, Pulumi config `gcp:project` is not used, so it can be skipped (Pulumi throwns a warning).
 
 Then *voilá*, check and deploy environments with `pulumi preview` and `pulumi up` (see **Pulumi CLI usage** section).
+
+### User emails as secrets
+
+If you want to store attendees emails as encrypted secrets instead of plain-text, you can leave them blank when writing the stack YAML file and add them manually: [Encrypted secrets in configuration data](https://docs.cloud.google.com/iam/docs/roles-overview#basic)
 
 ### Python virtual environments in Pulumi
 
