@@ -10,9 +10,9 @@ config:
     - iam.googleapis.com
     - compute.googleapis.com
     - storage.googleapis.com
-  organization_id: XXXX
+  parent_id: "organizations/XXXX"
   billing_account_id: XXXX
   folder_name: lab-gcs
   folder_display_name: Lab GCS
   project_prefix: lab-gcs
-  infra_script: ../events/example-generic_events/example-lab-gcs/lab-project_infra.py
+  infra_script: ../events/example-generic_events/example-lab-gcs/lab_infra.py

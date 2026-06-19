@@ -10,7 +10,7 @@ config:
     - iam.googleapis.com
     - compute.googleapis.com
     - storage.googleapis.com
-  organization_id: XXXX
+  parent_id: "organizations/XXXX"
   billing_account_id: XXXX
   folder_name: training-labs
   folder_display_name: Training Labs

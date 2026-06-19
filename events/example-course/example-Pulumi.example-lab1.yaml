@@ -10,9 +10,9 @@ config:
     - iam.googleapis.com
     - compute.googleapis.com
     - storage.googleapis.com
-  organization_id: XXXX
+  parent_id: "organizations/XXXX"
   billing_account_id: XXXX
   folder_name: example_course-example_lab1
   folder_display_name: Example course Example lab 1
   project_prefix: example-lab1
-  infra_script: ../events/example-course/example-lab1/lab-project_infra.py
+  infra_script: ../events/example-course/example-lab1/lab_infra.py
