@@ -4,7 +4,6 @@ In no particular order...
 
 - Disable gcp:project default config warning with: `pulumi config set gcp:disableGlobalProjectWarning true`
 - Code:
-  - Update quotas
   - Switch to autonaming convention for physical resources: <https://www.pulumi.com/blog/autonaming-configuration/>
   - Automatic testing: [unit, property and integration tests](https://www.pulumi.com/docs/using-pulumi/testing/)
 - Templating:

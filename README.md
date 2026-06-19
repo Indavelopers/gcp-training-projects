@@ -59,6 +59,10 @@ Usually, you might want to assign the `roles/owner` role to attendees and go wit
 
 A recommended alternative would be to use the new basic `roles/writer` or the legacy basic `roles/editor` instead, which would also be more secure.
 
+#### Modifying GCP project quotas
+
+You can modify project quotas directly in your `lab_infra.py` file using the `gcp.serviceusage.ConsumerQuotaOverride` resource ([docs](https://www.pulumi.com/registry/packages/gcp/api-docs/serviceusage/consumerquotaoverride/)). Ensure that the `serviceusage.googleapis.com` API is enabled for the project first (e.g., by adding it to the `apis` list in your stack configuration). Also, keep in mind that the requested quota overrides are still subject to the maximum bounds and limits allowed by your billing account or organization.
+
 ## Usage
 
 1. Clone repo and open dir: `git clone https://github.com/Indavelopers/gcp-training-projects.git`, `cd gcp-training-projects`
