@@ -6,10 +6,9 @@ In no particular order...
   - Select destination (org, folder), to create labs folder
   - Allow to create projects folder inside an already created GCP folder, or skip folder creation
   - Disable gcp:project default config warning with: `pulumi config set gcp:disableGlobalProjectWarning true`
-  - Add support to GMail, non-org admins
 - Code:
+  - Change "lab-project_infra.py" to "lab_infra.py"
   - Update quotas
-  - Consider using the random provider instead of Python rand num gen
   - Switch to autonaming convention for physical resources: <https://www.pulumi.com/blog/autonaming-configuration/>
   - Automatic testing: [unit, property and integration tests](https://www.pulumi.com/docs/using-pulumi/testing/)
 - Templating:

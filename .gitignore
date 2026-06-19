@@ -166,6 +166,6 @@ cython_debug/
 /src/pulumi_config_passphrase.txt
 
 # Dev testing
-events/test_event/
+events/test*/
 events/mmog_events/
 

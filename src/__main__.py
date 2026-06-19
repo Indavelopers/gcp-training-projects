@@ -15,9 +15,9 @@ infra_script = config.require('infra_script')
 emails = config.require_object('emails')
 apis = config.require_object('apis')
 roles = config.require_object('roles')
-organization_id = config.require('organization_id')
+organization_id = config.get('organization_id', default="")
 billing_account_id = config.require('billing_account_id')
-folder_name  = config.require('folder_name')
+folder_name  = config.get('folder_name', default="")
 project_prefix = config.require('project_prefix')
 event_unique_id = config.require('event_unique_id')
 
@@ -25,10 +25,13 @@ n_students = len(emails)
 stack_name = pulumi.get_stack()
 
 # Create a GCP folder for the training projects
-folder = gcp.organizations.Folder(folder_name,
-                                  display_name=folder_name,
-                                  parent=f'organizations/{organization_id}',
-                                  deletion_protection=False)
+if organization_id:
+    folder = gcp.organizations.Folder(folder_name,
+                                      display_name=folder_name,
+                                      parent=f'organizations/{organization_id}',
+                                      deletion_protection=False)
+else:
+    pulumi.log.info('No GCP organization config detected, or "no org" used.')
 
 # Random salt to allow to create more than one GCP project for each email
 # Includes random seed for reproducibility, if not, creates a new project everytime 'pulumi up' is run
@@ -50,13 +53,21 @@ generated_project_ids = [project_prefix + '-' + str(index_number) + '-' + hashli
 gcp_projects = {}
 output_project_ids_emails = []
 for generated_project_id, email in zip(generated_project_ids, emails):
-    # Create GCP projects under said folder
-    project = gcp.organizations.Project(generated_project_id, 
-                                        name=generated_project_id, 
-                                        project_id=generated_project_id, 
-                                        folder_id=folder.id,
-                                        billing_account=billing_account_id,
-                                        deletion_policy='DELETE')
+    if not organization_id:
+        # Create projects under no organization, no folder
+        project = gcp.organizations.Project(generated_project_id,
+                                            name=generated_project_id,
+                                            project_id=generated_project_id,
+                                            billing_account=billing_account_id,
+                                            deletion_policy='DELETE')
+    else:
+        # Create GCP projects under said organization and folder
+        project = gcp.organizations.Project(generated_project_id,
+                                            name=generated_project_id,
+                                            project_id=generated_project_id,
+                                            folder_id=folder.id,
+                                            billing_account=billing_account_id,
+                                            deletion_policy='DELETE')
 
     # Enable APIs on projects
     project_apis = {}
@@ -90,6 +101,6 @@ def import_from_path(module_name, file_path):
         raise ValueError(f'Module {module_name} not found in path: {file_path}')
 
 # Uncomment to debug if infra script is imported correctly
-# print(f'Importing infra script {infra_script}')
+# pulumi.log.debug(f'Importing infra script {infra_script}')
 
 import_from_path('infra_script', infra_script)
