@@ -33,7 +33,7 @@ Recommended dir structure:
 
 - `events`: Holds all events and labs, independent from base `src`
   - `events/example-generic_events`: Miscellaneous, single labs.
-  - `events/example-course`: Example course or event composed of multiple labs, each with own `example-lab0` stack, folder and `lab-project_infra.py` GCP resources file.
+  - `events/example-course`: Example course or event composed of multiple labs, each with own `example-lab0` stack, folder and `lab_infra.py` GCP resources file.
 - `src`: Pulumi Python code and example/base config files:
   - `src/example-Pulumi.yaml`: Base Pulumi project config file.
   - `src/example-Pulumi.stack_name.yaml`: Base Pulumi stack config file.
@@ -45,7 +45,7 @@ You can use this structure, using them as example files and adding your new even
 
 - Stacks config YAML files are created by default next to the project's `Pulumi.yaml` file, instead of the current dir.
 - In each `Pulumi.yaml`, use relative paths to navigate up from the event directory to the repository root's `src` directory. For example, if your project is 2 levels deep (`events/example-course/`), use `../../src/__main__.py` and `../../src/venv`.
-- Also, in each stack YAML file, use the correct relative path to the lab `lab-project_infra.py` file as evaluated from the main script (e.g., `../events/example-course/example-lab0/lab-project_infra.py` as seen from `src/__main__.py`).
+- Also, in each stack YAML file, use the correct relative path to the lab `lab_infra.py` file as evaluated from the main script (e.g., `../events/example-course/example-lab0/lab_infra.py` as seen from `src/__main__.py`).
 
 ### Writing GCP resources
 
@@ -84,7 +84,7 @@ A recommended alternative would be to use the new basic `roles/writer` or the le
 10. Copy the `src/example-Pulumi.stack_name-yaml` content into the `Pulumi.STACK_NAME.yaml` stack config file:
     1. `encryptionsalt`: Don't overwrite, unique to that stack.
     2. `infra_script`: Resources script to import, relative path from `src/__main__.py`.
-       1. File can have any name, `lab-project_infra` is just a convention.
+       1. File can have any name, `lab_infra` is just a convention.
     3. `emails`: List of attendees' emails. You can add an environment for the trainer putting his email first.
     4. `apis`: List of GCP APIs/services to enable.
     5. `roles`: List of roles to be assigned to attendes in their projects.
@@ -96,7 +96,7 @@ A recommended alternative would be to use the new basic `roles/writer` or the le
            1. GCP project IDs must be 6-30 chars with lowercase letters, digits, hyphens. Should start with a letter, no underscores, and trailing hyphens are prohibited, therefore this applies to project prefix as well.
         2. `00-99`: Project/attendee index, following emails list.
         3. `HASH_SUFFIX`: Unique hash created using stack config fields and random data.
-        4. For clarity, you can use `STACK_NAME_infra`, but it's not enforced - e.g. this how-to guide examples use `lab-project_infra`.
+        4. For clarity, you can use `STACK_NAME_infra`, but it's not enforced - e.g. this how-to guide examples use `lab_infra`.
     10. `event_unique_id`: Unique event ID, modify if you want to repeat the event using the same stack name and at least one repeating user.
         1. As GCP project IDs should be globally unique, a unique `HASH_SUFFIX` for each user is computed.
         2. This hash is computed using the stack config and random data, as stated before.
@@ -115,7 +115,7 @@ If you want to store attendees emails as encrypted secrets instead of plain-text
 ### Python virtual environments in Pulumi
 
 1. Pulumi automatically creates and uses a Python virtual env when running e.g. `pulumi up` for the first time, without user creating or activating it.
-   1. When writing your `lab-project_infra.py` files, you can select this virtual env for your IDE.
+   1. When writing your `lab_infra.py` files, you can select this virtual env for your IDE.
 2. `src/Pulumi.yaml` refers to this `src/venv` virtual environment.
 3. It automatically installs Python packages from `src/requirements.txt`.
 4. You can point your IDE's Python interpreter or virtual environment to this `src/venv` dir.
