@@ -88,7 +88,7 @@ A recommended alternative would be to use the new basic `roles/writer` or the le
     3. `emails`: List of attendees' emails. You can add an environment for the trainer putting his email first.
     4. `apis`: List of GCP APIs/services to enable.
     5. `roles`: List of roles to be assigned to attendes in their projects.
-    6. `organization_id`: GCP organization ID, billing account ID
+    6. `parent_id`: GCP organization or folder ID to use as parent, in the format `organizations/org_id` or `folders/folder_id`.
     7. `billing_account_id`: GCP billing account ID.
     8. `folder_name`: GCP folder name.
     9. `project_prefix`: GCP project prefix, e.g. GCP project ID would be `PROJECT_PREFIX-00-HASH_SUFFIX`.

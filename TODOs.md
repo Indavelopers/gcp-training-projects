@@ -2,10 +2,7 @@
 
 In no particular order...
 
-- Choosing folder:
-  - Select destination (org, folder), to create labs folder
-  - Allow to create projects folder inside an already created GCP folder, or skip folder creation
-  - Disable gcp:project default config warning with: `pulumi config set gcp:disableGlobalProjectWarning true`
+- Disable gcp:project default config warning with: `pulumi config set gcp:disableGlobalProjectWarning true`
 - Code:
   - Change "lab-project_infra.py" to "lab_infra.py"
   - Update quotas

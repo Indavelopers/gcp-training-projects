@@ -15,7 +15,7 @@ infra_script = config.require('infra_script')
 emails = config.require_object('emails')
 apis = config.require_object('apis')
 roles = config.require_object('roles')
-organization_id = config.get('organization_id', default="")
+parent_id = config.get('parent_id', default="")
 billing_account_id = config.require('billing_account_id')
 folder_name  = config.get('folder_name', default="")
 project_prefix = config.require('project_prefix')
@@ -25,20 +25,20 @@ n_students = len(emails)
 stack_name = pulumi.get_stack()
 
 # Create a GCP folder for the training projects
-if organization_id:
+if parent_id:
     folder = gcp.organizations.Folder(folder_name,
                                       display_name=folder_name,
-                                      parent=f'organizations/{organization_id}',
+                                      parent=parent_id,
                                       deletion_protection=False)
 else:
-    pulumi.log.info('No GCP organization config detected, or "no org" used.')
+    pulumi.log.info('No GCP parent resource config detected, either organization or folder. Skipping folder creation.')
 
 # Random salt to allow to create more than one GCP project for each email
 # Includes random seed for reproducibility, if not, creates a new project everytime 'pulumi up' is run
-# Includes organization ID, billing account ID, folder name, project prefix and stack name and event unique ID to avoid GCP project ID collisions
+# Includes parent ID, billing account ID, folder name, project prefix and stack name and event unique ID to avoid GCP project ID collisions
 random.seed(3.1415926)
 random_salts = [''.join(random.choices(string.ascii_lowercase + string.digits, k=4)) +
-                organization_id +
+                parent_id +
                 billing_account_id +
                 folder_name +
                 project_prefix +
@@ -53,7 +53,7 @@ generated_project_ids = [project_prefix + '-' + str(index_number) + '-' + hashli
 gcp_projects = {}
 output_project_ids_emails = []
 for generated_project_id, email in zip(generated_project_ids, emails):
-    if not organization_id:
+    if not parent_id:
         # Create projects under no organization, no folder
         project = gcp.organizations.Project(generated_project_id,
                                             name=generated_project_id,
@@ -61,7 +61,7 @@ for generated_project_id, email in zip(generated_project_ids, emails):
                                             billing_account=billing_account_id,
                                             deletion_policy='DELETE')
     else:
-        # Create GCP projects under said organization and folder
+        # Create GCP projects under said folder
         project = gcp.organizations.Project(generated_project_id,
                                             name=generated_project_id,
                                             project_id=generated_project_id,
