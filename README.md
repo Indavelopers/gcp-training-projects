@@ -124,8 +124,9 @@ If you want to store attendees emails as encrypted secrets instead of plain-text
 
 Check `src/requirements.txt`:
 
-- [Pulumi](https://www.pulumi.com/docs/) for Python - v3+
-- Pulumi provider: [Google Cloud (GCP) Classic](https://www.pulumi.com/registry/packages/gcp/) - v9+
+- [Pulumi](https://www.pulumi.com/docs/) CLI: 3.246.0
+- Pulumi for Python : v3+
+- Pulumi [Google Cloud (GCP) Classic](https://www.pulumi.com/registry/packages/gcp/) provider: v9+
 - Tested on Python 3.14
 
 You can add your Python modules here, or point to another `venv` dir in your stack config YAML file.
